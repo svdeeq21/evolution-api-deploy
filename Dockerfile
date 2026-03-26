@@ -17,8 +17,8 @@ COPY .env .env
 
 RUN npm install --legacy-peer-deps
 
-RUN npx tsc --skipLibCheck --noEmitOnError false || true
+RUN npm install -g ts-node typescript
 
 EXPOSE 8080
 
-CMD ["node", "dist/main.js"]
+CMD ["ts-node", "--skipLibCheck", "--transpile-only", "src/main.ts"]
