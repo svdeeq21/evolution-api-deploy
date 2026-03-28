@@ -9,15 +9,15 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /evolution
 
-RUN git clone --depth 1 https://github.com/EvolutionAPI/evolution-api.git . && \
+RUN git clone https://github.com/EvolutionAPI/evolution-api.git . && \
     git fetch --tags && \
     git checkout tags/1.8.2
 
+COPY patch.js patch.js
+RUN node patch.js
+
 COPY .env .env
 COPY env.yml src/env.yml
-COPY patch.js patch.js
-
-RUN node patch.js
 
 RUN npm install --legacy-peer-deps
 
