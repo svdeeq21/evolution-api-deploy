@@ -15,6 +15,9 @@ RUN git clone --depth 1 https://github.com/EvolutionAPI/evolution-api.git . && \
 
 COPY .env .env
 COPY env.yml src/env.yml
+COPY patch.js patch.js
+
+RUN node patch.js
 
 RUN npm install --legacy-peer-deps
 
