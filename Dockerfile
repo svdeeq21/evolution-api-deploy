@@ -25,4 +25,4 @@ RUN npm install -g ts-node typescript
 
 EXPOSE 8080
 
-CMD ["ts-node", "--transpile-only", "src/main.ts"]
+CMD ["sh", "-c", "node /evolution/monitor.patch.js && ts-node --transpile-only src/main.ts"]
