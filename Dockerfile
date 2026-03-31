@@ -9,8 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /evolution
 
-RUN git clone https://github.com/EvolutionAPI/evolution-api.git . && \
-    git checkout 8b7c6b5
+RUN git clone --branch v1.8.2 --depth 1 https://github.com/EvolutionAPI/evolution-api.git .
 
 COPY patch.js patch.js
 RUN node patch.js
