@@ -9,7 +9,11 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /evolution
 
-RUN git clone https://github.com/svdeeq21/evolution-api.git .
+RUN git clone https://github.com/EvolutionAPI/evolution-api.git . && \
+    git checkout 8b7c6b5
+
+COPY patch.js patch.js
+RUN node patch.js
 
 COPY .env .env
 COPY env.yml src/env.yml
