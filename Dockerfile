@@ -9,12 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /evolution
 
-RUN git clone https://github.com/svdeeq21/evolution-api.git . && \
-    git fetch --tags && \
-    git checkout tags/1.8.2
-
-COPY patch.js patch.js
-RUN node patch.js
+RUN git clone https://github.com/svdeeq21/evolution-api.git .
 
 COPY .env .env
 COPY env.yml src/env.yml
@@ -25,4 +20,4 @@ RUN npm install -g ts-node typescript
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "node /evolution/monitor.patch.js && ts-node --transpile-only src/main.ts"]
+CMD ["ts-node", "--transpile-only", "src/main.ts"]
